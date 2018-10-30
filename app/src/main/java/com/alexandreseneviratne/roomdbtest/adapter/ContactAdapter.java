@@ -39,11 +39,18 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Contact contact = contactArrayList.get(i);
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+        final Contact contact = contactArrayList.get(i);
 
         viewHolder.name.setText(contact.getName());
         viewHolder.email.setText(contact.getEmail());
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.addAndEditContact(true, contact, i);
+            }
+        });
     }
 
     @Override
